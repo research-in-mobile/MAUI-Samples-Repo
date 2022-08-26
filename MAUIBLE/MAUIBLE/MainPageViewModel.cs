@@ -93,7 +93,14 @@ namespace MAUIBLE
                     var device = await _adapter.ConnectToKnownDeviceAsync(deviceId);
                     var services = await device.GetServicesAsync();
 
-                    await App.Current.MainPage.DisplayAlert($"Connected to {device.Name}", JsonConvert.SerializeObject(services), "Ok");
+                    List<string> serviceChar = new List<string>();
+                    foreach (var service in services)
+                    {
+                        var characteristics = await service.GetCharacteristicsAsync();
+                        serviceChar.Add(JsonConvert.SerializeObject(characteristics.Select(c => c.Name)));
+                    }
+
+                    await App.Current.MainPage.DisplayAlert($"Connected to {device.Name}", JsonConvert.SerializeObject(serviceChar), "Ok");
                 }
             }
             catch (DeviceConnectionException ex)
@@ -159,9 +166,14 @@ namespace MAUIBLE
                 {
                     LastConnectedDevice = device.Id.ToString();
 
-                    //var characteristics = await services[2].GetCharacteristicsAsync();
+                    List<string> serviceChar = new List<string>();
+                    foreach (var service in services)
+                    {
+                        var characteristics = await service.GetCharacteristicsAsync();
+                        serviceChar.Add(JsonConvert.SerializeObject(characteristics.Select(c => c.Name)));    
+                    }
 
-                    await App.Current.MainPage.DisplayAlert($"Connected to {device.Name}", JsonConvert.SerializeObject(services), "Ok");
+                    await App.Current.MainPage.DisplayAlert($"Connected to {device.Name}", JsonConvert.SerializeObject(serviceChar), "Ok");
                 }
                 else
                     await App.Current.MainPage.DisplayAlert($"Connected to {device.Name}", "No available services found.", "Ok");
