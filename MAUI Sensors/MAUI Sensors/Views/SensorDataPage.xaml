@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MAUI_Sensors.ViewModels"
+             x:Class="MAUI_Sensors.SensorDataPage"
+             x:Name="Page">
+
+    <ContentPage.BindingContext>
+        <vm:MotionSensorsViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Margin="24,40"
+                             Spacing="10">
+
+            <Label VerticalOptions="Center"
+                   HorizontalOptions="Start">
+                <Label.FormattedText>
+                    <FormattedString>
+
+                        <Span Text="Accelerometer Reading: " />
+                        <Span Text="{Binding AccelerometerReading, StringFormat='{0:F2}'}"
+                              TextColor="Red"
+                              FontAttributes="Bold" />
+
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label VerticalOptions="Center"
+                   HorizontalOptions="Start">
+                <Label.FormattedText>
+                    <FormattedString>
+
+                        <Span Text="Gyroscope Reading: " />
+                        <Span Text="{Binding GyroReading, StringFormat='{0:F2}'}"
+                              TextColor="Red"
+                              FontAttributes="Bold" />
+
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label VerticalOptions="Center"
+                   HorizontalOptions="Start">
+                <Label.FormattedText>
+                    <FormattedString>
+
+                        <Span Text="Magnetometer Reading: " />
+                        <Span Text="{Binding MagnetometerReading, StringFormat='{0:F2}'}"
+                              TextColor="Red"
+                              FontAttributes="Bold" />
+
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label VerticalOptions="Center"
+                   HorizontalOptions="Start">
+                <Label.FormattedText>
+                    <FormattedString>
+
+                        <Span Text="Compass Reading: " />
+                        <Span Text="{Binding CompassReading, StringFormat='{0:F2}'}"
+                              TextColor="Red"
+                              FontAttributes="Bold" />
+
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label VerticalOptions="Center"
+                   HorizontalOptions="Start">
+                <Label.FormattedText>
+                    <FormattedString>
+
+                        <Span Text="Orientation Reading: " />
+                        <Span Text="{Binding OrientationReading, StringFormat='{0:F2}'}"
+                              TextColor="Red"
+                              FontAttributes="Bold" />
+
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label VerticalOptions="Center"
+                   HorizontalOptions="Start">
+
+                <Label.FormattedText>
+                    <FormattedString>
+
+                        <Span Text="Number of Shakes: " />
+                        <Span Text="{Binding ShakeDetectedCount}"
+                              TextColor="Red"
+                              FontAttributes="Bold" />
+
+                    </FormattedString>
+                </Label.FormattedText>
+
+            </Label>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

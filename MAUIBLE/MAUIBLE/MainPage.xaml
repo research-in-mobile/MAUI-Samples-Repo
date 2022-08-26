@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MAUIBLE"
+             x:Class="MAUIBLE.MainPage"
+             x:Name="Page">
+
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0"
+                             Padding="0,0">
+
+            <Button Text="SCAN"
+                    Command="{Binding ScanBLECommand}"
+                    HorizontalOptions="FillAndExpand"
+                    Padding="20"
+                    Margin="20,20" />
+
+
+
+            <CollectionView ItemsSource="{Binding Devices}"
+                            BackgroundColor="LightSeaGreen"
+                            Margin="0,4">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <VerticalStackLayout Padding="20,20">
+                            <Label Text="{Binding Id}" />
+                            <Label Text="{Binding Name}" />
+                            <Label Text="{Binding Rssi}" />
+                            <Label Text="{Binding NativeDevice}" />
+                            <Label Text="{Binding State}" />
+
+                            <VerticalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference Page}, 
+                                                                 Path=BindingContext.ConnectCommand}"
+                                                      CommandParameter="{Binding .}" />
+                            </VerticalStackLayout.GestureRecognizers>
+                        </VerticalStackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <CollectionView ItemsSource="{Binding ConnectedOrPairedDevices}"
+                            BackgroundColor="LightBlue"
+                            Margin="0,4,0,100">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <VerticalStackLayout Padding="20,20">
+                            <Label Text="{Binding Id}" />
+                            <Label Text="{Binding Name}" />
+                            <Label Text="{Binding Rssi}" />
+                            <Label Text="{Binding NativeDevice}" />
+                            <Label Text="{Binding State}" />
+
+                            <VerticalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference Page}, 
+                                                                 Path=BindingContext.ConnectCommand}"
+                                                      CommandParameter="{Binding .}" />
+                            </VerticalStackLayout.GestureRecognizers>
+                        </VerticalStackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
